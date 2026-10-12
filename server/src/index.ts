@@ -10,8 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
-const HOST = '0.0.0.0'; // IMPORTANT: Listen on all network interfaces for Render
+// Force PORT to be a number to satisfy TypeScript
+const PORT = Number(process.env.PORT) || 5000;
+const HOST = '0.0.0.0'; 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://mproffigh711_db_user:0VgZC4X1ZOyLc7u8@cluster0.041agih.mongodb.net/shift_planner?retryWrites=true&w=majority&appName=Cluster0';
 
 mongoose.connect(MONGO_URI)
