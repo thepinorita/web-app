@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
+const HOST = '0.0.0.0'; // IMPORTANT: Listen on all network interfaces for Render
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://mproffigh711_db_user:0VgZC4X1ZOyLc7u8@cluster0.041agih.mongodb.net/shift_planner?retryWrites=true&w=majority&appName=Cluster0';
 
 mongoose.connect(MONGO_URI)
@@ -29,10 +30,9 @@ app.get('/api/shifts', async (req, res) => {
 
 // Save shifts for a user
 app.post('/api/shifts', async (req, res) => {
-  const { userName, selections } = req.body; // selections: Array<{date, slot}>
+  const { userName, selections } = req.body; 
   
   try {
-    // Remove existing shifts for this user to avoid duplicates
     await Shift.deleteMany({ userName });
 
     const shiftsToSave = selections.map((s: any) => ({
@@ -48,6 +48,6 @@ app.post('/api/shifts', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`);
 });
