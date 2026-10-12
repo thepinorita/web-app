@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
-
 import NameEntry from './components/NameEntry';
 import Calendar from './components/Calendar';
 
@@ -55,7 +54,7 @@ const App: React.FC = () => {
           </button>
         </div>
       </nav>
-      <Calendar userName={userName} lang={lang} setLang={setLang} />
+      <Calendar userName={userName} lang={lang} setLang={(l: any) => setLang(l)} />
     </div>
   );
 };
