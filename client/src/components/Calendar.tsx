@@ -62,7 +62,7 @@ const Calendar: React.FC<CalendarProps> = ({ userName, lang }) => {
   };
 
   const formatDisp = (d: Date): string => {
-    return d.toLocaleDateString(lang === 'en' ? 'en-GB' : 'de-DE');
+    return d.toLocaleDateString('de-DE');
   };
 
   // --- API CALLS ---
